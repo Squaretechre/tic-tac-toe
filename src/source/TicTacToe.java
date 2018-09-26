@@ -54,10 +54,7 @@ class TicTacToe {
     }
 
     private void updateGameState() {
-        if (grid.hasWinningPlayer()) {
-            isFinished = true;
-        }
-        if (grid.hasNoSpacesLeft()) {
+        if (grid.hasWinningPlayer() || grid.hasNoSpacesLeft()) {
             isFinished = true;
         }
     }
