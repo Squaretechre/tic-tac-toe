@@ -19,7 +19,7 @@ public class Console {
 
         boolean continuePlaying = true;
 
-        while (!game.status().gameIsFinished && continuePlaying) {
+        while (!game.isFinished() && continuePlaying) {
             Player currentPlayer = game.currentPlayer();
             System.out.println("It's " + currentPlayer.name + "'s turn:");
             String coordinatesInput = scan.nextLine();
@@ -31,9 +31,9 @@ public class Console {
             System.out.println(response.message);
             drawGridFrom(game.movesHistory(), player1Name, player2Name);
 
-            GameWonResponse gameStatus = game.status();
-            if(gameStatus.gameIsFinished) {
-                System.out.println(gameStatus.message);
+            if(game.isFinished()) {
+                Result result = game.result();
+                System.out.println(result.message());
                 System.out.println("Continue playing? (y/n):");
                 String decision = scan.nextLine();
                 if(decision.equals("y")) {

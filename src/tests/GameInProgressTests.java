@@ -2,9 +2,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
-public class GameIsADrawTests {
+public class GameInProgressTests {
     private Player player1;
     private Player player2;
 
@@ -15,17 +15,17 @@ public class GameIsADrawTests {
     }
 
     @Test
-    public void game_is_a_draw_when_there_is_nowhere_left_to_move_and_no_winner() {
+    public void game_result_is_in_progress_when_there_is_neither_a_win_or_draw_situation() {
         Player[][] grid = {
-                { player2, player1, player1 },
-                { player1, player2, player2 },
-                { player1, player2, player1 },
+                {player2, player1, null},
+                {null, null, null},
+                {null, null, null},
         };
 
         TicTacToe game = new TicTacToe(player1, player2, new Grid(grid));
 
         Result result = game.result();
-        assertTrue(game.isFinished());
-        assertEquals("It's a draw for Dan and Other Dan.", result.message());
+        assertFalse(game.isFinished());
+        assertEquals("Game is in progress.", result.message());
     }
 }

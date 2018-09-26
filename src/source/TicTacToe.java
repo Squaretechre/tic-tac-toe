@@ -25,7 +25,7 @@ class TicTacToe {
 
     PlayerMoveResponse nextPlayerMoveAt(Coordinate coordinate) {
         PlayerMoveResponse response = attemptMoveTo(coordinate);
-        if(failed(response)) return response;
+        if (failed(response)) return response;
 
         updateGridWith(coordinate);
         updateMoveHistoryWith(coordinate);
@@ -43,21 +43,31 @@ class TicTacToe {
         return moveHistory;
     }
 
+    Result result() {
+        if (isFinished && grid.hasWinningPlayer()) {
+            return new WinResult(grid.winningPlayer());
+        }
+        if (isFinished && grid.hasNoSpacesLeft()) {
+            return new DrawResult(player1, player2);
+        }
+        return new InProgressResult();
+    }
+
     GameWonResponse status() {
-        if(grid.hasWinningPlayer()) {
+        if (grid.hasWinningPlayer()) {
             return GameWonResponse.playerHasWon(grid.winningPlayer());
         }
-        if(grid.hasNoSpacesLeft()) {
+        if (grid.hasNoSpacesLeft()) {
             return GameWonResponse.draw();
         }
         return GameWonResponse.noWinner();
     }
 
     private void updateGameState() {
-        if(grid.hasWinningPlayer()) {
+        if (grid.hasWinningPlayer()) {
             isFinished = true;
         }
-        if(grid.hasNoSpacesLeft()) {
+        if (grid.hasNoSpacesLeft()) {
             isFinished = true;
         }
     }
@@ -75,7 +85,7 @@ class TicTacToe {
     }
 
     private PlayerMoveResponse attemptMoveTo(Coordinate coordinate) {
-        if(grid.willNotAllowMoveAt(coordinate)) {
+        if (grid.willNotAllowMoveAt(coordinate)) {
             return PlayerMoveResponse.unableToMoveToCoordinate(currentPlayer, coordinate);
         }
         return PlayerMoveResponse.successfulMove(currentPlayer, coordinate);

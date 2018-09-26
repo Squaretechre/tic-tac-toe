@@ -1,6 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class Player1WinsTests {
@@ -16,7 +17,10 @@ public class Player1WinsTests {
     private void assertWinWhenPlayerNextMovesTo(Coordinate coordinate, Player[][] grid) {
         TicTacToe game = new TicTacToe(player1, player2, new Grid(grid));
         game.nextPlayerMoveAt(coordinate);
+
+        Result result = game.result();
         assertTrue(game.isFinished());
+        assertEquals("Dan wins!", result.message());
     }
 
     @Test
