@@ -20,7 +20,7 @@ public class GameHasBeenWonTests {
         TicTacToe game = new TicTacToe(player1, player2, new Grid(gridArray));
 
         GameWonResponse response = game.status();
-        assertTrue(response.hasBeenWon);
+        assertTrue(response.gameIsFinished);
         assertEquals(winMessage, response.message);
     }
 

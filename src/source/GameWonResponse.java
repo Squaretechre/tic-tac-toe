@@ -1,9 +1,10 @@
 public class GameWonResponse {
-    public boolean hasBeenWon;
+    public boolean gameIsFinished;
+    public boolean wasADraw;
     public String message;
 
-    private GameWonResponse(boolean success, String message) {
-        this.hasBeenWon = success;
+    private GameWonResponse(boolean gameIsFinished, String message) {
+        this.gameIsFinished = gameIsFinished;
         this.message = message;
     }
 
@@ -13,5 +14,9 @@ public class GameWonResponse {
 
     public static GameWonResponse noWinner() {
         return new GameWonResponse(false, "Nobody has won yet.");
+    }
+
+    public static GameWonResponse draw() {
+        return new GameWonResponse(true, "It's a draw.");
     }
 }

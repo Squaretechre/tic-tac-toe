@@ -18,7 +18,7 @@ public class GameHasNotBeenWonTests {
         TicTacToe game = new TicTacToe(player1, player2, new Grid(gridArray));
 
         GameWonResponse response = game.status();
-        assertFalse(response.hasBeenWon);
+        assertFalse(response.gameIsFinished);
         assertEquals("Nobody has won yet.", response.message);
     }
 

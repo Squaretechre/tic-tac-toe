@@ -36,6 +36,9 @@ class TicTacToe {
         if(grid.hasWinningPlayer()) {
             return GameWonResponse.playerHasWon(grid.winningPlayer());
         }
+        if(grid.hasNoSpacesLeft()) {
+            return GameWonResponse.draw();
+        }
         return GameWonResponse.noWinner();
     }
 

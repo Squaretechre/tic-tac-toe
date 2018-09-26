@@ -26,4 +26,11 @@ class GridLine {
         boolean lineHasWinningPlayer = lineIsFullyOccupied && onlyOnePlayerIsOnLine;
         return lineHasWinningPlayer ? playersOnLine.get(0) : null;
     }
+
+    boolean hasEmptySpaces() {
+        for (Player player : lineOfPlayerMoves) {
+           if (player == null) return true;
+        }
+        return false;
+    }
 }

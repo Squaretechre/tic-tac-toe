@@ -53,4 +53,11 @@ class Grid {
     boolean hasWinningPlayer() {
         return winningPlayer() != null;
     }
+
+    boolean hasNoSpacesLeft() {
+        for(GridLine gridLine : gridLines) {
+           if(gridLine.hasEmptySpaces()) return false;
+        }
+        return true;
+    }
 }
