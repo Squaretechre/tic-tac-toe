@@ -35,14 +35,12 @@ class TicTacToe {
         return response;
     }
 
-    private void updateGameState() {
-        if(grid.hasWinningPlayer()) {
-            isFinished = true;
-        }
-    }
-
     boolean isFinished() {
         return this.isFinished;
+    }
+
+    MoveHistory movesHistory() {
+        return moveHistory;
     }
 
     GameWonResponse status() {
@@ -55,8 +53,13 @@ class TicTacToe {
         return GameWonResponse.noWinner();
     }
 
-    MoveHistory movesHistory() {
-        return moveHistory;
+    private void updateGameState() {
+        if(grid.hasWinningPlayer()) {
+            isFinished = true;
+        }
+        if(grid.hasNoSpacesLeft()) {
+            isFinished = true;
+        }
     }
 
     private void updateMoveHistoryWith(Coordinate coordinate) {
