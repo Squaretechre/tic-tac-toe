@@ -1,7 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class GameHasNotBeenWonTests {
@@ -16,10 +15,7 @@ public class GameHasNotBeenWonTests {
 
     private void assertNotWinningGrid(Player[][] gridArray) {
         TicTacToe game = new TicTacToe(player1, player2, new Grid(gridArray));
-
-        GameWonResponse response = game.status();
-        assertFalse(response.gameIsFinished);
-        assertEquals("Nobody has won yet.", response.message);
+        assertFalse(game.isFinished());
     }
 
     @Test

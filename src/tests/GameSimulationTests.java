@@ -22,7 +22,7 @@ public class GameSimulationTests {
         game.nextPlayerMoveAt(new Coordinate(1, 0));
         game.nextPlayerMoveAt(new Coordinate(2, 1));
 
-        assertFalse(game.status().gameIsFinished);
+        assertFalse(game.isFinished());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class GameSimulationTests {
         game.nextPlayerMoveAt(new Coordinate(2, 1));
         game.nextPlayerMoveAt(new Coordinate(2, 0));
 
-        assertTrue(game.status().gameIsFinished);
+        assertTrue(game.isFinished());
     }
 
     @Test
@@ -45,6 +45,6 @@ public class GameSimulationTests {
         game.nextPlayerMoveAt(new Coordinate(0, 2));
         game.nextPlayerMoveAt(new Coordinate(2, 1));
 
-        assertTrue(game.status().gameIsFinished);
+        assertTrue(game.isFinished());
     }
 }

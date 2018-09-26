@@ -16,6 +16,7 @@ class TicTacToe {
         this.grid = grid;
         this.currentPlayer = player1;
         this.moveHistory = new MoveHistory();
+        updateGameState();
     }
 
     Player currentPlayer() {
@@ -30,8 +31,6 @@ class TicTacToe {
         updateMoveHistoryWith(coordinate);
         setNextPlayer();
         updateGameState();
-
-
 
         return response;
     }
