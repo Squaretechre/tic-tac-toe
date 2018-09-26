@@ -29,7 +29,7 @@ public class Console {
             Coordinate coordinate = new Coordinate(x, y);
             PlayerMoveResponse response = game.nextPlayerMoveAt(coordinate);
             System.out.println(response.message);
-            drawGridFrom(game.movesHistory(), player1Name, player2Name);
+            drawGridFrom(game.moves(), player1Name, player2Name);
 
             if(game.isFinished()) {
                 Result result = game.result();

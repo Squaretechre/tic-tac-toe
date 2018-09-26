@@ -39,7 +39,7 @@ class TicTacToe {
         return this.isFinished;
     }
 
-    MoveHistory movesHistory() {
+    MoveHistory moves() {
         return moveHistory;
     }
 

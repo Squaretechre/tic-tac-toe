@@ -17,14 +17,14 @@ public class ShowPastMovesTests {
 
     @Test
     public void no_moves_returned_when_nobody_has_made_a_move() {
-        MoveHistory history = game.movesHistory();
+        MoveHistory history = game.moves();
         assertEquals(0, history.moveCount());
     }
 
     @Test
     public void one_move_returned_when_only_player1_has_made_a_move() {
         game.nextPlayerMoveAt(new Coordinate(0, 0));
-        MoveHistory history = game.movesHistory();
+        MoveHistory history = game.moves();
         Move firstMove = history.moves().get(0);
 
         assertEquals(player1, firstMove.player);
@@ -38,7 +38,7 @@ public class ShowPastMovesTests {
     public void two_moves_returned_when_player1_and_player2_have_made_one_move_each() {
         game.nextPlayerMoveAt(new Coordinate(0, 0));
         game.nextPlayerMoveAt(new Coordinate(1, 1));
-        MoveHistory history = game.movesHistory();
+        MoveHistory history = game.moves();
         Move firstMove = history.moves().get(0);
         Move secondMove = history.moves().get(1);
 
