@@ -17,9 +17,9 @@ public class Console {
         Player player2 = new Player(player2Name);
         TicTacToe game = new TicTacToe(player1, player2);
 
-        boolean continuePlaying = true;
+        boolean playerWouldLikeToContinuePlaying = true;
 
-        while (!game.isFinished() && continuePlaying) {
+        while (game.isInProgress() && playerWouldLikeToContinuePlaying) {
             Player currentPlayer = game.currentPlayer();
             System.out.println("It's " + currentPlayer.name + "'s turn:");
             String coordinatesInput = scan.nextLine();
@@ -40,7 +40,7 @@ public class Console {
                     game = new TicTacToe(player1, player2);
                 }
                 else {
-                    continuePlaying = false;
+                    playerWouldLikeToContinuePlaying = false;
                 }
             }
         }
