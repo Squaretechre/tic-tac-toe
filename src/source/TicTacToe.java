@@ -53,16 +53,6 @@ class TicTacToe {
         return new InProgressResult();
     }
 
-    GameWonResponse status() {
-        if (grid.hasWinningPlayer()) {
-            return GameWonResponse.playerHasWon(grid.winningPlayer());
-        }
-        if (grid.hasNoSpacesLeft()) {
-            return GameWonResponse.draw();
-        }
-        return GameWonResponse.noWinner();
-    }
-
     private void updateGameState() {
         if (grid.hasWinningPlayer()) {
             isFinished = true;
