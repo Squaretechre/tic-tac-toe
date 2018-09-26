@@ -12,19 +12,19 @@ class GridLine {
     }
 
     Player winningPlayer() {
-        ArrayList<Player> playersOnLine = new ArrayList<>();
+        ArrayList<Player> playersOnThisLine = new ArrayList<>();
         int occupiedSpacesOnLine = 0;
         for (Player player : lineOfPlayerMoves) {
             boolean noPlayerHasMovedToThisSpaceYet = player == null;
             if (noPlayerHasMovedToThisSpaceYet) continue;
             occupiedSpacesOnLine++;
-            if (playersOnLine.contains(player)) continue;
-            playersOnLine.add(player);
+            if (playersOnThisLine.contains(player)) continue;
+            playersOnThisLine.add(player);
         }
         boolean lineIsFullyOccupied = occupiedSpacesOnLine == 3;
-        boolean onlyOnePlayerIsOnLine = playersOnLine.size() == 1;
-        boolean lineHasWinningPlayer = lineIsFullyOccupied && onlyOnePlayerIsOnLine;
-        return lineHasWinningPlayer ? playersOnLine.get(0) : null;
+        boolean onlyOnePlayerIsOnThisLine = playersOnThisLine.size() == 1;
+        boolean lineHasWinningPlayer = lineIsFullyOccupied && onlyOnePlayerIsOnThisLine;
+        return lineHasWinningPlayer ? playersOnThisLine.get(0) : null;
     }
 
     boolean hasEmptySpaces() {
