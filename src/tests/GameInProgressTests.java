@@ -2,7 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class GameInProgressTests {
     private Player player1;
@@ -25,7 +25,7 @@ public class GameInProgressTests {
         TicTacToe game = new TicTacToe(player1, player2, new Grid(grid));
 
         Result result = game.result();
-        assertFalse(game.isFinished());
+        assertTrue(game.isInProgress());
         assertEquals("Game is in progress.", result.message());
     }
 }

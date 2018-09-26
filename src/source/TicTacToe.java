@@ -36,6 +36,10 @@ class TicTacToe {
         return gameIsFinished();
     }
 
+    boolean isInProgress() {
+        return !gameIsFinished();
+    }
+
     MoveHistory moves() {
         return moveHistory;
     }
