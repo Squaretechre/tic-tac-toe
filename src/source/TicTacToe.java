@@ -4,7 +4,6 @@ class TicTacToe {
     private Player currentPlayer;
     private Grid grid;
     private MoveHistory moveHistory;
-    private boolean isFinished;
 
     TicTacToe(Player player1, Player player2) {
         this(player1, player2, new Grid());
@@ -16,7 +15,6 @@ class TicTacToe {
         this.grid = grid;
         this.currentPlayer = player1;
         this.moveHistory = new MoveHistory();
-        updateGameState();
     }
 
     Player currentPlayer() {
@@ -30,13 +28,12 @@ class TicTacToe {
         updateGridWith(coordinate);
         updateMoveHistoryWith(coordinate);
         setNextPlayer();
-        updateGameState();
 
         return response;
     }
 
     boolean isFinished() {
-        return this.isFinished;
+        return gameIsFinished();
     }
 
     MoveHistory moves() {
@@ -44,19 +41,17 @@ class TicTacToe {
     }
 
     Result result() {
-        if (isFinished && grid.hasWinningPlayer()) {
+        if (gameIsFinished() && grid.hasWinningPlayer()) {
             return new WinResult(grid.winningPlayer());
         }
-        if (isFinished && grid.hasNoSpacesLeft()) {
+        if (gameIsFinished() && grid.hasNoSpacesLeft()) {
             return new DrawResult(player1, player2);
         }
         return new InProgressResult();
     }
 
-    private void updateGameState() {
-        if (grid.hasWinningPlayer() || grid.hasNoSpacesLeft()) {
-            isFinished = true;
-        }
+    private boolean gameIsFinished() {
+        return grid.hasWinningPlayer() || grid.hasNoSpacesLeft();
     }
 
     private void updateMoveHistoryWith(Coordinate coordinate) {
