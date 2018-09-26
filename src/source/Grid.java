@@ -35,17 +35,17 @@ class Grid {
     }
 
     void addMove(Player player, Coordinate coordinate) {
-        grid[coordinate.x][coordinate.y] = player;
+        grid[coordinate.y][coordinate.x] = player;
         updateGrid();
     }
 
     boolean willNotAllowMoveAt(Coordinate coordinate) {
-        return grid[coordinate.x][coordinate.y] != null;
+        return grid[coordinate.y][coordinate.x] != null;
     }
 
     Player winningPlayer() {
-        for(GridLine gridLine : gridLines) {
-           if(gridLine.hasWinningPlayer()) return gridLine.winningPlayer();
+        for (GridLine gridLine : gridLines) {
+            if (gridLine.hasWinningPlayer()) return gridLine.winningPlayer();
         }
         return null;
     }
@@ -55,8 +55,8 @@ class Grid {
     }
 
     boolean hasNoSpacesLeft() {
-        for(GridLine gridLine : gridLines) {
-           if(gridLine.hasEmptySpaces()) return false;
+        for (GridLine gridLine : gridLines) {
+            if (gridLine.hasEmptySpaces()) return false;
         }
         return true;
     }

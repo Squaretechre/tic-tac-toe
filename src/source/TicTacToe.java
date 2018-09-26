@@ -4,6 +4,7 @@ class TicTacToe {
     private Player currentPlayer;
     private Grid grid;
     private MoveHistory moveHistory;
+    private boolean isFinished;
 
     TicTacToe(Player player1, Player player2) {
         this(player1, player2, new Grid());
@@ -22,14 +23,27 @@ class TicTacToe {
     }
 
     PlayerMoveResponse nextPlayerMoveAt(Coordinate coordinate) {
-        PlayerMoveResponse move = attemptMoveTo(coordinate);
-        if(failed(move)) return move;
+        PlayerMoveResponse response = attemptMoveTo(coordinate);
+        if(failed(response)) return response;
 
         updateGridWith(coordinate);
         updateMoveHistoryWith(coordinate);
         setNextPlayer();
+        updateGameState();
 
-        return move;
+
+
+        return response;
+    }
+
+    private void updateGameState() {
+        if(grid.hasWinningPlayer()) {
+            isFinished = true;
+        }
+    }
+
+    boolean isFinished() {
+        return this.isFinished;
     }
 
     GameWonResponse status() {
