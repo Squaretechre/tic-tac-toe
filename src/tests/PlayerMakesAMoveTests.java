@@ -8,10 +8,14 @@ import static org.junit.Assert.assertFalse;
 public class PlayerMakesAMoveTests {
 
     private TicTacToe game;
+    private Player player1;
+    private Player player2;
 
     @Before
     public void setUp() {
-        game = new TicTacToe(new Player("Dan"), new Player("Other Dan"), new Grid());
+        player1 = new Player("Dan");
+        player2 = new Player("Other Dan");
+        game = new TicTacToe(player1, player2, new Grid());
     }
 
     @Test
@@ -46,5 +50,41 @@ public class PlayerMakesAMoveTests {
         assertEquals("Other Dan can't move to 0, 0. That coordinate is already occupied.", response.message);
     }
 
+    @Test
+    public void neither_player_can_move_again_when_game_is_a_draw() {
+        Player[][] grid = {
+                { player2, player1, player1 },
+                { player1, player2, player2 },
+                { player1, player2, null },
+        };
 
+        TicTacToe game = new TicTacToe(player1, player2, new Grid(grid));
+
+        Coordinate bottomRight = new Coordinate(2, 2);
+        game.nextPlayerMoveAt(bottomRight);
+
+        PlayerMoveResponse response = game.nextPlayerMoveAt(bottomRight);
+
+        assertFalse(response.success);
+        assertEquals("Unable to move, this game has finished.", response.message);
+    }
+
+    @Test
+    public void neither_player_can_move_again_when_game_has_been_won() {
+        Player[][] grid = {
+                { player1, player2, player2 },
+                { null, player1, null },
+                { null, null, null },
+        };
+
+        TicTacToe game = new TicTacToe(player1, player2, new Grid(grid));
+
+        Coordinate bottomRight = new Coordinate(2, 2);
+        game.nextPlayerMoveAt(bottomRight);
+
+        PlayerMoveResponse response = game.nextPlayerMoveAt(bottomRight);
+
+        assertFalse(response.success);
+        assertEquals("Unable to move, this game has finished.", response.message);
+    }
 }

@@ -14,7 +14,7 @@ public class StateWin implements GameState {
 
     @Override
     public PlayerMoveResponse nextPlayerMoveAt(Coordinate coordinate) {
-        return null;
+        return PlayerMoveResponse.gameHasFinished();
     }
 
     @Override
