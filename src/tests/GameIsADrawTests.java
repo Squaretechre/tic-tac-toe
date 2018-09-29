@@ -19,11 +19,13 @@ public class GameIsADrawTests {
         Player[][] grid = {
                 { player2, player1, player1 },
                 { player1, player2, player2 },
-                { player1, player2, player1 },
+                { player1, player2, null },
         };
 
         TicTacToe game = new TicTacToe(player1, player2, new Grid(grid));
 
+        Coordinate bottomRight = new Coordinate(2, 2);
+        game.nextPlayerMoveAt(bottomRight);
         Result result = game.result();
         assertTrue(game.isFinished());
         assertEquals("It's a draw for Dan and Other Dan.", result.message());
