@@ -15,4 +15,8 @@ public class PlayerMoveResponse {
     public static PlayerMoveResponse successfulMove(Player currentPlayer, Coordinate coordinate) {
         return new PlayerMoveResponse(true, currentPlayer.name + " made a move at " + coordinate.x + ", " + coordinate.y);
     }
+
+    public static PlayerMoveResponse gameHasFinished() {
+        return new PlayerMoveResponse(false, "Unable to move, this game has finished.");
+    }
 }
